@@ -24,6 +24,11 @@ public class PostsService {
     }
 
     @Transactional
+    public Posts saveLottos(PostsSaveRequestDto requestDto) {
+        return postsRepository.save(requestDto.toEntity());
+    }
+
+    @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));

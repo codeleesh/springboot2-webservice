@@ -1,16 +1,39 @@
 var main = {
     init : function () {
         var _this = this;
+        $('#btn-save-lotto').on('click', function () {
+            _this.saveLotto();
+        });
         $('#btn-save').on('click', function () {
             _this.save();
         });
-
         $('#btn-update').on('click', function () {
             _this.update();
         });
 
         $('#btn-delete').on('click', function () {
             _this.delete();
+        });
+    },
+    saveLotto : function () {
+        var data = {
+            cnt : $('#cnt').val(),
+            title : 'lotto #1',
+            author: 'system',
+            content: 'lotto'
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/lottos/posts',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('Lotto가 등록되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
         });
     },
     save : function () {

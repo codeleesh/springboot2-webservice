@@ -2,6 +2,9 @@ create table posts (id bigint not null auto_increment, created_date datetime, mo
 create table user (id bigint not null auto_increment, created_date datetime, modified_date datetime, email varchar(255) not null, name varchar(255) not null, picture varchar(255), role varchar(255) not null, primary key (id)) engine=InnoDB;
 create table lottos (id bigint not null auto_increment,created_date datetime,modified_date datetime,cnt bigint(1),num1 bigint(2),num2 bigint(2),num3 bigint(2),num4 bigint(2),num5 bigint(2),num6 bigint(2),posts_id bigint not null,primary key (id),foreign key (posts_id) references posts (id)) engine=InnoDB;
 
+insert into user (created_date, modified_date, email, name, role) value(now(), now(), 'lovethefeel@gmail.com', '퐁당퐁당', 'USER');
+update user set role = 'USER' where id = 1;
+
 CREATE TABLE SPRING_SESSION (
 	PRIMARY_ID CHAR(36) NOT NULL,
 	SESSION_ID CHAR(36) NOT NULL,

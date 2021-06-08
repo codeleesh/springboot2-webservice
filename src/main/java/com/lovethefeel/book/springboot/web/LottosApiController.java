@@ -1,5 +1,6 @@
 package com.lovethefeel.book.springboot.web;
 
+import com.lovethefeel.book.springboot.domain.posts.Posts;
 import com.lovethefeel.book.springboot.service.LottosService;
 import com.lovethefeel.book.springboot.web.dto.LottosSaveRequestDto;
 import com.lovethefeel.book.springboot.web.dto.PostsSaveRequestDto;
@@ -14,7 +15,7 @@ public class LottosApiController {
     private final LottosService lottosService;
 
     @PostMapping("/api/v1/lottos")
-    public Long save(@RequestBody LottosSaveRequestDto requestDto) {
-        return lottosService.save(requestDto);
+    public Long save(@RequestBody LottosSaveRequestDto requestDto, Posts posts) {
+        return lottosService.save(requestDto, null);
     }
 }
