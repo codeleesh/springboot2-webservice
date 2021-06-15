@@ -1,10 +1,7 @@
 package com.lovethefeel.book.springboot.web;
 
 import com.lovethefeel.book.springboot.service.PostsService;
-import com.lovethefeel.book.springboot.web.dto.PostsListResponseDto;
-import com.lovethefeel.book.springboot.web.dto.PostsResponseDto;
-import com.lovethefeel.book.springboot.web.dto.PostsSaveRequestDto;
-import com.lovethefeel.book.springboot.web.dto.PostsUpdateRequestDto;
+import com.lovethefeel.book.springboot.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +38,11 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
+    }
+
+    @GetMapping("/api/v1/lottos/posts/{id}")
+    public List<LottosPostsResponseDto> findByPostsLottosId(@PathVariable Long id) {
+        return postsService.findByPostsLottosId(id);
     }
 
     @GetMapping("/api/v1/posts/list")

@@ -3,12 +3,15 @@ package com.lovethefeel.book.springboot.web;
 import com.lovethefeel.book.springboot.config.auth.LoginUser;
 import com.lovethefeel.book.springboot.config.auth.dto.SessionUser;
 import com.lovethefeel.book.springboot.service.PostsService;
+import com.lovethefeel.book.springboot.web.dto.LottosPostsResponseDto;
 import com.lovethefeel.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -35,11 +38,19 @@ public class IndexController {
         return "lottos-posts-save";
     }
 
-    @GetMapping("/posts/update/{id}")
+/*    @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
 
         return "posts-update";
+    }*/
+
+    @GetMapping("/lottos/posts/update/{id}")
+    public String postsLottosUpdate(@PathVariable Long id, Model model) {
+        List<LottosPostsResponseDto> dto = postsService.findByPostsLottosId(id);
+        model.addAttribute("post", dto);
+
+        return "lottos-posts-update";
     }
 }

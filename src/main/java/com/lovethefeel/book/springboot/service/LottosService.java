@@ -1,13 +1,8 @@
 package com.lovethefeel.book.springboot.service;
 
-import com.lovethefeel.book.springboot.domain.lottos.Lottos;
 import com.lovethefeel.book.springboot.domain.lottos.LottosRepository;
 import com.lovethefeel.book.springboot.domain.posts.Posts;
-import com.lovethefeel.book.springboot.domain.posts.PostsRepository;
-import com.lovethefeel.book.springboot.web.dto.LottosPostsResponseDto;
 import com.lovethefeel.book.springboot.web.dto.LottosSaveRequestDto;
-import com.lovethefeel.book.springboot.web.dto.PostsResponseDto;
-import com.lovethefeel.book.springboot.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,17 +47,9 @@ public class LottosService {
                     .posts(posts)
                     .build();
 
-            result = lottosRepository.save(requestDto.toEntity()).getId();
+            lottosRepository.save(requestDto.toEntity());
         }
 
         return result;
-    }
-
-    @Transactional(readOnly = true)
-    public LottosPostsResponseDto findById(Long id) {
-        Lottos entity = lottosRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
-
-        return new LottosPostsResponseDto(entity);
     }
 }

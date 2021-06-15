@@ -27,10 +27,4 @@ public class LottosPostsApiController {
                 .build();
         return lottosService.save(lottoSaveRequestDto, posts);
     }
-
-    @GetMapping("/api/v1/lottos/posts/{id}")
-    public LottosPostsResponseDto findById(@PathVariable Long id) {
-
-        return lottosService.findById(id);
-    }
 }

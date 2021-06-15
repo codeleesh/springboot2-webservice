@@ -2,6 +2,7 @@ package com.lovethefeel.book.springboot.domain.lottos;
 
 import com.lovethefeel.book.springboot.domain.BaseTimeEntity;
 import com.lovethefeel.book.springboot.domain.posts.Posts;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Lottos extends BaseTimeEntity {
     @Id
@@ -43,6 +44,10 @@ public class Lottos extends BaseTimeEntity {
         this.num4 = num4;
         this.num5 = num5;
         this.num6 = num6;
+        this.posts = posts;
+    }
+
+    public void setPosts(Posts posts) {
         this.posts = posts;
     }
 }

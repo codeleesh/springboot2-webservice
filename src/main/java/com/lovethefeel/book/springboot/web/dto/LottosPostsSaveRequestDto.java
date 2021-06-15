@@ -1,7 +1,5 @@
 package com.lovethefeel.book.springboot.web.dto;
 
-import com.lovethefeel.book.springboot.domain.lottos.Lottos;
-import com.lovethefeel.book.springboot.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

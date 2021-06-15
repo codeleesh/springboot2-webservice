@@ -1,11 +1,9 @@
 package com.lovethefeel.book.springboot.service;
 
 import com.lovethefeel.book.springboot.domain.posts.Posts;
+import com.lovethefeel.book.springboot.domain.posts.PostsLottos;
 import com.lovethefeel.book.springboot.domain.posts.PostsRepository;
-import com.lovethefeel.book.springboot.web.dto.PostsListResponseDto;
-import com.lovethefeel.book.springboot.web.dto.PostsResponseDto;
-import com.lovethefeel.book.springboot.web.dto.PostsSaveRequestDto;
-import com.lovethefeel.book.springboot.web.dto.PostsUpdateRequestDto;
+import com.lovethefeel.book.springboot.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +50,12 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<LottosPostsResponseDto> findByPostsLottosId(Long id) {
+        List<PostsLottos> entity = postsRepository.findByPostsLottosId(id);
+        return entity.stream().map(LottosPostsResponseDto::new).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
