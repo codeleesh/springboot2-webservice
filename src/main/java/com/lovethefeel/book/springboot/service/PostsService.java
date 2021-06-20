@@ -53,9 +53,11 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<LottosPostsResponseDto> findByPostsLottosId(Long id) {
+    public List<LottosPostsListResponseDto> findByPostsLottosId(Long id) {
         List<PostsLottos> entity = postsRepository.findByPostsLottosId(id);
-        return entity.stream().map(LottosPostsResponseDto::new).collect(Collectors.toList());
+        return entity.stream()
+                .map(LottosPostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
