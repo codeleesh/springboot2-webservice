@@ -32,7 +32,7 @@ public class Lottos extends BaseTimeEntity {
     private int num6;
 
     @ManyToOne
-    @JoinColumn(name="posts_id")
+    @JoinColumn(name="posts_id", foreignKey = @ForeignKey(name = "lottos_ibfk_1"))
     private Posts posts;
 
     @Builder
