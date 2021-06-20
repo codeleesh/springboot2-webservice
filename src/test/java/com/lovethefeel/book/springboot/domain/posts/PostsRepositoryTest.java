@@ -1,16 +1,25 @@
 package com.lovethefeel.book.springboot.domain.posts;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lovethefeel.book.springboot.domain.lottos.Lottos;
+import com.lovethefeel.book.springboot.domain.lottos.LottosRepository;
+import com.lovethefeel.book.springboot.web.dto.LottosPostsSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,6 +27,9 @@ public class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
+
+    @Autowired
+    LottosRepository lottosRepository;
 
     @After
     public void cleanup() {
@@ -43,6 +55,38 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void 로또게시글저장_불러오기() throws Exception {
+
+        //given
+        Posts posts = Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build();
+        postsRepository.save(posts);
+
+        int cnt = 5;
+        lottosRepository.save(Lottos.builder()
+                .cnt(cnt)
+                .num1(10)
+                .num2(15)
+                .num3(18)
+                .num4(25)
+                .num5(33)
+                .num6(42)
+                .posts(posts)
+                .build());
+
+        //when
+        List<PostsLottos> postsLottos = postsRepository.findByPostsLottosId(1L);
+
+        //then
+        assertThat(postsLottos.size()).isEqualTo(1);
+        assertThat(postsLottos.get(0).getId()).isEqualTo(1);
+        assertThat(postsLottos.get(0).getLottoss().get(0).getCnt()).isEqualTo(5);
     }
 
     @Test

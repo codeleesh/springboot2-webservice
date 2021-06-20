@@ -49,6 +49,7 @@ public class LottosRepositoryTest {
                 .posts(posts)
                 .build());
 
+        //when
         List<Lottos> lottosList = lottosRepository.findAll();
 
         //then

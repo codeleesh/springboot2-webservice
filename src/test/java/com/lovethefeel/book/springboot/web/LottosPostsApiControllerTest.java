@@ -3,7 +3,6 @@ package com.lovethefeel.book.springboot.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lovethefeel.book.springboot.domain.lottos.Lottos;
 import com.lovethefeel.book.springboot.domain.lottos.LottosRepository;
-import com.lovethefeel.book.springboot.domain.posts.Posts;
 import com.lovethefeel.book.springboot.domain.posts.PostsRepository;
 import com.lovethefeel.book.springboot.web.dto.LottosPostsSaveRequestDto;
 import org.junit.After;
