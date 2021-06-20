@@ -26,8 +26,8 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
-    private List<Lottos> lottos = new ArrayList<>();
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Lottos> lottoss = new ArrayList<>();
 
     private String author;
 
@@ -38,9 +38,9 @@ public class Posts extends BaseTimeEntity {
         this.author = author;
     }
 
-    public void addLottos(Lottos lotto) {
-        lottos.add(lotto);
-        lotto.setPosts(this);
+    public void addLottos(Lottos lottos) {
+        lottoss.add(lottos);
+        lottos.setPosts(this);
     }
 
     public void update(String title, String content) {
