@@ -3,7 +3,7 @@ package com.lovethefeel.book.springboot.web;
 import com.lovethefeel.book.springboot.config.auth.LoginUser;
 import com.lovethefeel.book.springboot.config.auth.dto.SessionUser;
 import com.lovethefeel.book.springboot.service.PostsService;
-import com.lovethefeel.book.springboot.web.dto.LottosPostsResponseDto;
+import com.lovethefeel.book.springboot.web.dto.LottosPostsListResponseDto;
 import com.lovethefeel.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -38,19 +38,22 @@ public class IndexController {
         return "lottos-posts-save";
     }
 
-/*    @GetMapping("/posts/update/{id}")
+    @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
+        List<LottosPostsListResponseDto> dtoList = postsService.findByPostsLottosId(id);
+
         model.addAttribute("post", dto);
+        model.addAttribute("postsLottos", dtoList.get(0).getLottoss());
 
         return "posts-update";
-    }*/
+    }
 
-    @GetMapping("/lottos/posts/update/{id}")
+/*    @GetMapping("/lottos/posts/select/{id}")
     public String postsLottosUpdate(@PathVariable Long id, Model model) {
-        List<LottosPostsResponseDto> dto = postsService.findByPostsLottosId(id);
+        List<LottosPostsListResponseDto> dto = postsService.findByPostsLottosId(id);
         model.addAttribute("post", dto);
 
         return "lottos-posts-update";
-    }
+    }*/
 }
