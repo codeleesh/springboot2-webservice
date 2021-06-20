@@ -41,7 +41,7 @@ public class PostsApiController {
     }
 
     @GetMapping("/api/v1/lottos/posts/{id}")
-    public List<LottosPostsResponseDto> findByPostsLottosId(@PathVariable Long id) {
+    public List<LottosPostsListResponseDto> findByPostsLottosId(@PathVariable Long id) {
         return postsService.findByPostsLottosId(id);
     }
 

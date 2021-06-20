@@ -18,15 +18,15 @@ public class PostsRepositoryImpl implements PostsRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     public List<PostsLottos> findByPostsLottosId(Long id) {
-        Map<Posts, List<Lottos>> tranForm = queryFactory
+        Map<Posts, List<Lottos>> transform = queryFactory
                 .from(posts)
-                .leftJoin(posts.lottos, lottos)
+                .leftJoin(posts.lottoss, lottos)
                 .where(posts.id.eq(id))
                 .transform(groupBy(posts).as(list(lottos)));
 
-        return tranForm.entrySet().stream()
-                .map(entry -> new PostsLottos(entry.getKey().getTitle(), entry.getKey().getAuthor()
-                        , entry.getKey().getContent(), entry.getValue()))
+        return transform.entrySet().stream()
+                .map(entry -> new PostsLottos(entry.getKey().getId(), entry.getKey().getTitle()
+                        , entry.getKey().getContent(), entry.getKey().getAuthor(), entry.getKey().getLottoss()))
                 .collect(Collectors.toList());
     }
 }
