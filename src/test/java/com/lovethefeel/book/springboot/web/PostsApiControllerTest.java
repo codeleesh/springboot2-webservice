@@ -24,6 +24,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -133,14 +135,14 @@ public class PostsApiControllerTest {
     public void Posts_lottos_등록한다() throws Exception {
 
         //given
-        String title = "title";
-        String content = "content";
+        String title = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + "-lotto";
+        String content = "lotto";
+        String author = "system";
         int cnt = 5;
 
         LottosPostsSaveRequestDto requestLottosPostsRequestDto = LottosPostsSaveRequestDto.builder()
-                .title(title)
                 .content(content)
-                .author("author")
+                .author(author)
                 .cnt(5)
                 .build();
 
@@ -156,8 +158,8 @@ public class PostsApiControllerTest {
         Long id = 1L;
         Optional<Posts> posts = postsRepository.findById(id);
         assertThat(posts.get().getId()).isEqualTo(1);
-        assertThat(posts.get().getTitle()).isEqualTo("title");
-        assertThat(posts.get().getAuthor()).isEqualTo("author");
+        assertThat(posts.get().getTitle()).isEqualTo(title);
+        assertThat(posts.get().getAuthor()).isEqualTo("system");
 
         Optional<Lottos> lottos = lottosRepository.findById(id);
         assertThat(lottos.get().getPosts().getId()).isEqualTo(1);
