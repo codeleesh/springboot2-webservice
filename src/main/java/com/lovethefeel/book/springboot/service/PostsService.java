@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,18 @@ public class PostsService {
     @Transactional
     public Posts saveLottos(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity());
+    }
+
+    @Transactional
+    public Posts saveLottos(LottosPostsSaveRequestDto requestDto) {
+        String formatDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + "-lotto";
+
+        PostsSaveRequestDto requestPostsDto = PostsSaveRequestDto.builder()
+                .title(formatDate)
+                .content(requestDto.getContent())
+                .author(requestDto.getAuthor())
+                .build();
+        return postsRepository.save(requestPostsDto.toEntity());
     }
 
     @Transactional

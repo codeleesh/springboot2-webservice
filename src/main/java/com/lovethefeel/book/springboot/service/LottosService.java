@@ -2,6 +2,7 @@ package com.lovethefeel.book.springboot.service;
 
 import com.lovethefeel.book.springboot.domain.lottos.LottosRepository;
 import com.lovethefeel.book.springboot.domain.posts.Posts;
+import com.lovethefeel.book.springboot.web.dto.LottosPostsSaveRequestDto;
 import com.lovethefeel.book.springboot.web.dto.LottosSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class LottosService {
     private final LottosRepository lottosRepository;
 
     @Transactional
-    public Long save(LottosSaveRequestDto requestDto, Posts posts) {
+    public Long save(LottosPostsSaveRequestDto requestDto, Posts posts) {
 
         final int reqCnt = requestDto.getCnt();
         long result = 0;
@@ -36,7 +37,7 @@ public class LottosService {
             }
             Arrays.sort(lottoNums);
 
-            requestDto = LottosSaveRequestDto.builder()
+            LottosSaveRequestDto lottoSaveRequestDto = LottosSaveRequestDto.builder()
                     .cnt(requestDto.getCnt())
                     .num1(lottoNums[0])
                     .num2(lottoNums[1])
@@ -47,7 +48,7 @@ public class LottosService {
                     .posts(posts)
                     .build();
 
-            lottosRepository.save(requestDto.toEntity());
+            lottosRepository.save(lottoSaveRequestDto.toEntity());
         }
 
         return result;

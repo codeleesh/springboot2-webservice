@@ -15,16 +15,7 @@ public class LottosPostsApiController {
 
     @PostMapping("/api/v1/lottos/posts")
     public Long save(@RequestBody LottosPostsSaveRequestDto requestLottosPostDto) {
-        PostsSaveRequestDto requestPostsDto = PostsSaveRequestDto.builder()
-                .title(requestLottosPostDto.getTitle())
-                .content(requestLottosPostDto.getContent())
-                .author(requestLottosPostDto.getAuthor())
-                .build();
-        Posts posts = postsService.saveLottos(requestPostsDto);
-
-        LottosSaveRequestDto lottoSaveRequestDto = LottosSaveRequestDto.builder()
-                .cnt(requestLottosPostDto.getCnt())
-                .build();
-        return lottosService.save(lottoSaveRequestDto, posts);
+        Posts posts = postsService.saveLottos(requestLottosPostDto);
+        return lottosService.save(requestLottosPostDto, posts);
     }
 }

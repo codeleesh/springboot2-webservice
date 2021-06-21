@@ -10,7 +10,6 @@ var main = {
         $('#btn-update').on('click', function () {
             _this.update();
         });
-
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
@@ -18,8 +17,7 @@ var main = {
     saveLotto : function () {
         var data = {
             cnt : $('#cnt').val(),
-            title : 'lotto #1',
-            author: 'system',
+            author : 'system',
             content: 'lotto'
         };
 

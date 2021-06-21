@@ -21,6 +21,7 @@
                 <label for="content"> 내용 </label>
                 <textarea class="form-control" id="content">{{post.content}}</textarea>
             </div>
+            {{#postsLottos}}
             <div class="form-group">
                 <!-- 목록 출력 영역 -->
                 <table class="table table-horizontal table-bordered">
@@ -35,7 +36,6 @@
                     </tr>
                     </thead>
                     <tbody id="tbody">
-                    {{#postsLottos}}
                         <tr>
                             <td>{{num1}}</td>
                             <td>{{num2}}</td>
@@ -44,10 +44,12 @@
                             <td>{{num5}}</td>
                             <td>{{num6}}</td>
                         </tr>
-                    {{/postsLottos}}
                     </tbody>
                 </table>
             </div>
+            {{/postsLottos}}
+            {{^postsLottos}}
+            {{/postsLottos}}
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
