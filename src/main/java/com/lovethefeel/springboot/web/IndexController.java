@@ -48,12 +48,4 @@ public class IndexController {
 
         return "posts-update";
     }
-
-/*    @GetMapping("/lottos/posts/select/{id}")
-    public String postsLottosUpdate(@PathVariable Long id, Model model) {
-        List<LottosPostsListResponseDto> dto = postsService.findByPostsLottosId(id);
-        model.addAttribute("post", dto);
-
-        return "lottos-posts-update";
-    }*/
 }
