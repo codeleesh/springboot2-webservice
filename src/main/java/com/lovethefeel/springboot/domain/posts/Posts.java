@@ -38,11 +38,6 @@ public class Posts extends BaseTimeEntity {
         this.author = author;
     }
 
-    public void addLottos(Lottos lottos) {
-        lottoss.add(lottos);
-        lottos.setPosts(this);
-    }
-
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
