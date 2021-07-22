@@ -24,11 +24,6 @@ public class PostsService {
     }
 
     @Transactional
-    public Posts saveLottos(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity());
-    }
-
-    @Transactional
     public Posts saveLottos(LottosPostsSaveRequestDto requestDto) {
         String formatDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + "-lotto";
 

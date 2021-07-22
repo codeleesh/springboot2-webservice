@@ -25,7 +25,7 @@ public class LottosService {
         long result = 0;
 
         for ( int i = 1; i <= reqCnt; i++ ) {
-            List<Integer> lottoNum = new ArrayList<Integer>();
+            List<Integer> lottoNum = new ArrayList<>();
             for ( int j = 1; j <= 45; j++ ) {
                 lottoNum.add(j);
             }
