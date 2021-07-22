@@ -24,9 +24,9 @@ public class PostsRepositoryImpl implements PostsRepositoryCustom {
                 .where(posts.id.eq(id))
                 .transform(groupBy(posts).as(list(lottos)));
 
-        return transform.entrySet().stream()
-                .map(entry -> new PostsLottos(entry.getKey().getId(), entry.getKey().getTitle()
-                        , entry.getKey().getContent(), entry.getKey().getAuthor(), entry.getKey().getLottoss()))
+        return transform.keySet().stream()
+                .map(lottosList -> new PostsLottos(lottosList.getId(), lottosList.getTitle()
+                        , lottosList.getContent(), lottosList.getAuthor(), lottosList.getLottoss()))
                 .collect(Collectors.toList());
     }
 }
