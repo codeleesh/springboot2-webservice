@@ -19,5 +19,4 @@ public class LottosPostsSaveRequestDto {
         this.author = author;
         this.cnt = cnt;
     }
-
 }
