@@ -32,6 +32,15 @@ public enum Account {
                 .anyMatch(account -> account == accountType);
     }
 
+    public static AccountType getRandomAccountType(String code) {
+        return getAccountType(code);
+    }
+
+    private static AccountType getAccountType(String code) {
+        int size = Account.valueOf(code).accountTypeList.size();
+        return Account.valueOf(code).accountTypeList.get(new Random().nextInt(size));
+    }
+
     public String getTitle() {
         return title;
     }

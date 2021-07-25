@@ -2,7 +2,6 @@ package com.lovethefeel.springboot.common;
 
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AccountTest {
 
@@ -28,5 +27,11 @@ public class AccountTest {
         System.out.println(accountType.getTitle());
         System.out.println(account.getTitle());
         System.out.println(account.name());
+    }
+
+    @Test
+    public void getRandomAccountType() {
+        String code = "BA";
+        System.out.println(Account.getRandomAccountType(code));
     }
 }
