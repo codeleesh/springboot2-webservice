@@ -1,8 +1,6 @@
 package com.lovethefeel.springboot.common;
 
 import org.junit.Test;
-import org.springframework.security.core.parameters.P;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,4 +18,15 @@ public class AccountTest {
         return AccountType.A1001;
     }
 
+    @Test
+    public void testRandom() {
+
+        AccountType accountType = AccountType.getRandom();
+        Account account = Account.findByAccountType(accountType);
+
+        System.out.println(accountType.name());
+        System.out.println(accountType.getTitle());
+        System.out.println(account.getTitle());
+        System.out.println(account.name());
+    }
 }

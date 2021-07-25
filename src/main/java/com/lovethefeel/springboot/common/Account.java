@@ -3,6 +3,7 @@ package com.lovethefeel.springboot.common;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public enum Account {
     BA("은행", Arrays.asList(AccountType.A1001, AccountType.A1002, AccountType.A1003)),
@@ -35,4 +36,7 @@ public enum Account {
         return title;
     }
 
+    public List<AccountType> getAccountTypeList() {
+        return accountTypeList;
+    }
 }
