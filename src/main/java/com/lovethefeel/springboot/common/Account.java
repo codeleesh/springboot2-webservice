@@ -6,19 +6,18 @@ import java.util.List;
 import java.util.Random;
 
 public enum Account {
-    BA("은행", Arrays.asList(AccountType.A1001, AccountType.A1002, AccountType.A1003)),
-    CD("카드", Arrays.asList(AccountType.A2001, AccountType.A2002)),
+    BA("은행", Arrays.asList(AccountType.TYPE1, AccountType.TYPE2, AccountType.TYPE3)),
+    CD("카드", Arrays.asList(AccountType.TYPE4, AccountType.TYPE5)),
     EMPTY("없음", Collections.EMPTY_LIST);
 
-    private String title;
+    private String name;
     private List<AccountType> accountTypeList;
 
-    Account(String title, List<AccountType> accountTypeList) {
-        this.title = title;
+    Account(String name, List<AccountType> accountTypeList) {
+        this.name = name;
         this.accountTypeList = accountTypeList;
     }
 
-    //
     public static Account findByAccountType(AccountType accountType) {
         return Arrays.stream(Account.values())
                 .filter(account -> account.hasAccountType(accountType))
@@ -41,8 +40,8 @@ public enum Account {
         return Account.valueOf(code).accountTypeList.get(new Random().nextInt(size));
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     public List<AccountType> getAccountTypeList() {

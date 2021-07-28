@@ -6,20 +6,26 @@ import java.util.List;
 import java.util.Random;
 
 public enum AccountType {
-    A1001("자유식"),
-    A1002("입력식"),
-    A1003("출력시"),
-    A2001("신용대출"),
-    A2002("직장대출");
+    TYPE1("1001", "자유식"),
+    TYPE2("1002", "입력식"),
+    TYPE3("1003", "출력시"),
+    TYPE4("2001", "신용대출"),
+    TYPE5("2002", "직장대출");
 
-    private String title;
+    private String code;
+    private String name;
 
-    AccountType(String title) {
-        this.title = title;
+    AccountType(String code, String name) {
+        this.code = code;
+        this.name = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static AccountType getRandom () {

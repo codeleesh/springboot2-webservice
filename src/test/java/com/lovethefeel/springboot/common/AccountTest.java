@@ -2,6 +2,7 @@ package com.lovethefeel.springboot.common;
 
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AccountTest {
 
@@ -10,11 +11,11 @@ public class AccountTest {
         AccountType accountType = selectAccountType();
         Account account = Account.findByAccountType(accountType);
 
-        assertThat("은행").isEqualTo(account.getTitle());
+        assertThat("은행").isEqualTo(account.getName());
     }
 
     private AccountType selectAccountType(){
-        return AccountType.A1001;
+        return AccountType.TYPE1;
     }
 
     @Test
@@ -23,15 +24,12 @@ public class AccountTest {
         AccountType accountType = AccountType.getRandom();
         Account account = Account.findByAccountType(accountType);
 
-        System.out.println(accountType.name());
-        System.out.println(accountType.getTitle());
-        System.out.println(account.getTitle());
-        System.out.println(account.name());
+        assertThat(3).isEqualTo(account.getAccountTypeList().size());
     }
 
     @Test
     public void getRandomAccountType() {
         String code = "BA";
-        System.out.println(Account.getRandomAccountType(code));
+        AccountType accountType = Account.getRandomAccountType(code);
     }
 }
