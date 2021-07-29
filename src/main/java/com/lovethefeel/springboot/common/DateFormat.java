@@ -48,15 +48,6 @@ public enum DateFormat {
         return this.value;
     }
 
-    private static final List<DateFormat> VALUES =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = VALUES.size();
-    private static final Random RANDOM = new Random();
-
-    public static DateFormat randomLetter () {
-        return VALUES.get(RANDOM.nextInt(SIZE));
-    }
-
     /**
      * 해당 날짜 포맷에 맞게 현재 날짜를 반환한다.
      * 잘못된 날짜 형식일 경우 빈 문자열을 반환

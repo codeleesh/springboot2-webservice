@@ -1,7 +1,8 @@
 package com.lovethefeel.springboot.common;
 
 import org.junit.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class AccountTest {
 
@@ -30,5 +31,21 @@ public class AccountTest {
     public void getRandomAccountType() {
         String code = "BA";
         AccountType accountType = Account.getRandomAccountType(code);
+        assertThat(accountType.getCode()).isNotNull();
+
+        String code1 = "CA";
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Account.getRandomAccountType(code1));
+    }
+
+    @Test
+    public void findByAccountType() {
+
+        AccountType accountType = AccountType.TYPE1;
+        assertThat(Account.BA).isEqualTo(Account.findByAccountType(accountType));
+
+        String exceptionCheck = "TYPE7";
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Account.findByAccountType(AccountType.valueOf(exceptionCheck)));
     }
 }
